@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Asus DSL-N14U Printer Service DoS"
-date: 2021-01-17
+title: "Nmap, the silent slayer"
+date: 2021-01-20
 comments: true
 categories: vulnerability
 ---
@@ -21,78 +21,35 @@ We have not yet tested Asus models other than those listed. However we suspect i
 
 ## Overview
 
-An issue was discovered on Asus DSL-N14U_B1 v.1.1.2.3_805. An attacker can upload any file to the Firmware box as long as it is renamed as Settings_ProductName.trx (eg. Settings_DSL-N14U-B1.trx). Once the file is loaded, shutdown measures on a wide range of services are triggered as if it were a real update, resulting in DoS condition.
+An issue was discovered on ASUS DSL-N14U-B1 1.1.2.3_805 device. Remote attacker to cause a denial of service (crash) by performing a SYN scan using a tool such as nmap. Sending these packets causes a persistent outage of the jetdirect (9100/tcp), LPD (515/tcp) and sos (3838/udp) services. 
 
 ## POC
 
-**This PoC can result in a DoS.**
+**This PoC can crash services.**
 
-**Given the vendor's security, we don't show the Source Code of shell scripts. However we will inspect the web page source. We will notice the differences before and after the exploitation using reconnaissance tools.**
+**Given the vendor's security, we don't show the service execution flow, however we will explain the vulnerability in a comprehensive way.**
 
 ## Details
 
-Let's do an initial ports scan of our router using nmap.
+We enter the router via ssh to understand through the proc file system what happens.
 
-![](/assets/asus/nmap-1.png)
+![](/assets/asus_2/raw_socket_before.png)
 
-As we can see, services like ssh and jetdirect are running.
-Now let's head back to the firmware update page.
+Come mostrato in figura, possiamo notare dei servizi attivi e la loro porta in formato esadecimale.
+Quelli che ci interessano sono sostanzialmente 515 (jetdirect) nonché 0203, 
+e 515 (LPD) che corrisponde a 238C in esadecimale.
 
-![](/assets/asus/firmware_update_page.png)
+Lanciamo nmap inserendo uno script relativamente intrusivo. Come riportato dal sito di nmap (https://nmap.org/book/nse-usage.html), the more intrusive a script is, the more it engages the services until they crash (as in this case).
 
-We initially inspect the source of the webpage, then we look for an "upload" field in order to find the front-end firmware uploading function. And there it is:
-```
-function uiDoUpdate()
-{
-	var form=document.uiPostUpdateForm;
-	var string4 = form.tools_FW_UploadFile.value.search(/DSL-N14U-B1/);
+`nmap -sV --script pjl-ready-message -p 9100 192.168.1.1`
 
-	if (form.tools_FW_UploadFile.value=="") {
-		alert("You must select a firmware file to upload.");
-	}
-	else {
-		if (string4 >= 0) {
-			form.postflag.value = "1";
-			if(model_name == "DSL-N66U" || model_name == "DSL-AC52U")
-			{
-				showLoading(220);
-				setTimeout("redirect();", 220000);
-			}
-			else if(model_name == "DSL-N55U-C1" || model_name == "DSL-N16U")
-			{
-				showLoading(152);
-				setTimeout("redirect();", 152000);
-			}
-			else //DSL-N14U ...
-			{
-				showLoading(182);
-				setTimeout("redirect();", 182000);
-			}
-			setTimeout("chk_upgrade();", 5000);
-			form.submit();
-		}
-		else
-			alert("Nuovo file firmware non è valido.");
-	}
-}
 
-```
-Given the checks, it seems that it can accept firmware belonging to different asus models.
-What changes visually seems to be the wait time for loading.
-Loading an image generates the "Invalid Firmware" alert.
+Una volta eseguito, noteremo immediatamente delle differenze nel proc file system.
 
-![](/assets/asus/not_valid.png)
+![](/assets/asus_2/raw_socket_after.png)
 
-But what if we decide to change the name of the image? For example in "Settings_DSL-N14U-B1.trx" ?
-![](/assets/asus/rename.png)
 
-So we upload the appropriately renamed png file ... what could possibly go wrong? It gets accepted ...
-![](/assets/asus/upload_progress.png)
-## Showdown
-Once the loading is complete, we run nmap again and...what??? 
 
-![](/assets/asus/nmap-2.png)
 
-Argh, some services have been been suddenly stopped working as if it was a normal firmware upgrade :/
+ Moreover verrà ucciso anche un servizio chiamaso sos (Scito Object Server).
 
-As long as the router is turned on, the services will not restart. Manual intervention is required in order to restart services properly.
