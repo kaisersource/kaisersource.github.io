@@ -29,7 +29,6 @@ An issue was discovered on ASUS DSL-N14U-B1 1.1.2.3_805 device. Remote attacker 
 
 **Given the vendor's security, we don't show the service execution flow, however we will explain the vulnerability in a comprehensive way.**
 
-## Details
 
 We enter the router via ssh to understand through the proc file system what happens.
 
@@ -49,7 +48,24 @@ Una volta eseguito, noteremo immediatamente delle differenze nel proc file syste
 ![](/assets/asus_2/raw_socket_after.png)
 
 
+Come controprova, mostriamo lo stato dei servizi prima e dopo l'esecuzione di nmap via `netstat -tulen` 
+(busybox non supporta -p, motivo per cui lavoriamo sul proc file system all'interno del router).
+
+![](/assets/asus_2/netstat_before.png)
+
+![](/assets/asus_2/netstat_after.png)
+
+Verifichiamo inoltre se ci sono stati altri servizi locali non visibili per le policy del firewall ad essere stati compromessi. Per facilitarne la comprensione, confrontiamo le due immagini.
+
+![](/assets/asus_2/tcp_udp_all_before.png)
+
+![](/assets/asus_2/tcp_udp_all_after.png)
+
+Se avete avuto occhio in precedenza  avete visto bene, sono ben tre ocorrenze ad essere eliminate...
+Un altro servizio è crashato...sos service (3838/tcp) - Scito Object Server
+
+I servizi torneranno attivi solo con un intervento fisico (reboot)
 
 
- Moreover verrà ucciso anche un servizio chiamaso sos (Scito Object Server).
 
+Dato il contesto limitante di un ambiente come quello di un router, vi consiglio per "abbellire" il formato del proc file system da questo articolo https://staaldraad.github.io/2017/12/20/netstat-without-netstat/).

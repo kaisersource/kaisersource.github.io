@@ -1,1 +1,0 @@
-https://nmap.org/nsedoc/scripts/pjl-ready-message.html
