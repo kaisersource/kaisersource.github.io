@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Persistent crash of services after TCP SYN scan"
-date: xxxx-xx-xx
+date: 2022-03-15
 comments: true
 categories: vulnerability
 ---
