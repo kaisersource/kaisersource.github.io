@@ -9,9 +9,6 @@ Lost Hardware RAM: 371,579K (About 0.36 GB for hardware components).
 
 Many Xiaomi devices come with Google apps I don't use. These are usually safe to uninstall directly from the app drawer, but their package names are included here for completeness:
 
-    com.google.android.videos (Google TV)
-    com.google.android.apps.tachyon (Google Duo)
-
 ## com.mi.globalrowser
 Privacy nightmare. You really should use something else.
 https://www.xda-developers.com/xiaomi-mi-web-browser-pro-mint-collecting-browsing-data-incognito-mode/
@@ -20,3 +17,16 @@ Since MIUI 12, you can no longer uninstall this app. Disabling it still works fi
 ## com.miui.msa.global
 Analyzation of user behaviors to show you ads. Yeah Xiaomi phones has ads...
 https://www.theverge.com/2018/9/19/17877970/xiaomi-ads-settings-menu-android-phones
+
+## com.mi.analytics
+According to a guy who tried to reverse engineer this app, Xiaomi Analytics can replace any (signed?) package they want silently on your device within 24 hours. Maybe that no longer the case now but... you don't want analytics anyway.
+Source : http://blog.thijsbroenink.com/2016/09/xiaomis-analytics-app-reverse-engineered/
+
+## com.mi.mipicks
+Mi Picks (becomed Mi Apps Store and now Get Apps -- Xiaomi app store)
+
+## com.xiaomi.mi_connect_service
+Handles connection to IoT stuff Seems to be linked to Mi Home (com.xiaomi.smarthome)
+
+## com.xiaomi.glgm
+Xiaomi Games
