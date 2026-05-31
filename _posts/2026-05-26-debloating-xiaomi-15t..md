@@ -5,7 +5,7 @@ Pure Free RAM (Empty space): 141,060K (Only about 141 MB is truly, completely em
 Cached RAM (Apps on standby): 3,551,532K (About 3.5 GB of suspended apps).
 Active Kernel Used: 2,058,684K (About 2.0 GB running the core OS).
 Active PSS Used: 5,203,233K (About 5.2 GB running your active apps).
-Lost/Hardware RAM: 371,579K (About 0.36 GB for hardware components).
+Lost Hardware RAM: 371,579K (About 0.36 GB for hardware components).
 
 Many Xiaomi devices come with Google apps I don't use. These are usually safe to uninstall directly from the app drawer, but their package names are included here for completeness:
 
