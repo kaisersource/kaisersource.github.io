@@ -50,11 +50,18 @@ It's labeled as Blur and has orange-white MI icon, but it just hides under it. N
 ## com.xiaomi.touchservice
 No activities, uses miui analytics looks like a tracking touch.
 
-com.xiaomi.xmfskeeper 
+## com.xiaomi.xmfskeeper 
 Xiaomi Service Framework Keeper
 Logger service for 'com.xiaomi.xmsf'
 
 
 ## com.xiaomi.trustservice
 MiTrustService - IFAASecCam, security things or 'Remote Control trust'.
+
+#à com.xiaomi.payment
+Old package name for Mi Credit (https://play.google.com/store/apps/details?id=com.micredit.in.gp)
+Mi Credit is a personal loan platform from Xiaomi.
+
+## com.xiaomi.aiasst.vision
+AiasstVision. Not needed if you removed AI Call Assistant.
 
