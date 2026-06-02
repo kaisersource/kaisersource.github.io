@@ -40,3 +40,21 @@ https://i.postimg.cc/GpSxmNyj/Bez-n-zvu.png
 ## com.miui.daemon
 Collects a lot of data and sends them to China.
 See: https://web.archive.org/web/20210923050136/https://twitter.com/fs0c131y/status/938872347087564800
+
+## com.miui.misightservice
+Telemetry and diagnostics collector app that sends analytics to Xiaomi servers and has almost no use for user.
+Something on the level of com.miui.msa or com.miui.daemon. Worth deleting.
+Constantly connects somewhere and sends/receives up to 100KB of data per day to/from an unknown source. This also means it often runs in background.
+It's labeled as Blur and has orange-white MI icon, but it just hides under it. No blur/ui/any other issues seen after around a month of use of HyperOS 2.0 with this removed.
+
+## com.xiaomi.touchservice
+No activities, uses miui analytics looks like a tracking touch.
+
+com.xiaomi.xmfskeeper 
+Xiaomi Service Framework Keeper
+Logger service for 'com.xiaomi.xmsf'
+
+
+## com.xiaomi.trustservice
+MiTrustService - IFAASecCam, security things or 'Remote Control trust'.
+
