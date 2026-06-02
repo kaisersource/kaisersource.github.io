@@ -31,8 +31,12 @@ Handles connection to IoT stuff Seems to be linked to Mi Home (com.xiaomi.smarth
 ## com.xiaomi.glgm
 Xiaomi Games
 
-
 ## com.xiaomi.mtb
 Rueban(MTB)V2.4
 Hidden debugging baseband tools, not available for users.
 https://i.postimg.cc/GpSxmNyj/Bez-n-zvu.png
+
+
+## com.miui.daemon
+Collects a lot of data and sends them to China.
+See: https://web.archive.org/web/20210923050136/https://twitter.com/fs0c131y/status/938872347087564800
