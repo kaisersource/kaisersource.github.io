@@ -7,7 +7,7 @@ Active Kernel Used: 2,058,684K (About 2.0 GB running the core OS).
 Active PSS Used: 5,203,233K (About 5.2 GB running your active apps).
 Lost Hardware RAM: 371,579K (About 0.36 GB for hardware components).
 
-Many Xiaomi devices come with Google apps I don't use. These are usually safe to uninstall directly from the app drawer, but their package names are included here for completeness:
+Many Xiaomi devices come with services and apps I don't use. These are usually safe to uninstall directly from the app drawer, but their package names are included here for completeness:
 
 ## com.mi.globalrowser
 Privacy nightmare. You really should use something else.
@@ -58,10 +58,31 @@ Logger service for 'com.xiaomi.xmsf'
 ## com.xiaomi.trustservice
 MiTrustService - IFAASecCam, security things or 'Remote Control trust'.
 
-#à com.xiaomi.payment
+## com.xiaomi.payment
 Old package name for Mi Credit (https://play.google.com/store/apps/details?id=com.micredit.in.gp)
 Mi Credit is a personal loan platform from Xiaomi.
 
 ## com.xiaomi.aiasst.vision
 AiasstVision. Not needed if you removed AI Call Assistant.
+
+## com.facebook.appmanager
+Facebook app manager handles Facebook apps updates.
+
+## com.facebook.services
+Facebook Services is a tool that lets you manage different Facebook services automatically using your Android device.
+In particular, the tool focuses on searching for nearby shops and establishments based on your interests.
+
+## com.facebook.system
+Facebook App Installer (empty shell app which incites you to install the Facebook app)
+
+## com.mediatek.atmwifimeta
+wifi data logger you don't want
+
+## com.mediatek.mdmconfig
+Mobile Device Management (MDM) allows company’s IT department to reach inside your phone in the background, allowing them to ensure
+your device is secure, know where it is, and remotely erase your data if the phone is stolen.
+It's a way to ensure employees stay productive and do not breach corporate policies. You should NEVER have a MDM tool on your personal phone. Never.
+https://blog.cdemi.io/never-accept-an-mdm-policy-on-your-personal-phone/
+
+
 
